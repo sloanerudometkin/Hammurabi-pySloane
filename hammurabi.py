@@ -25,6 +25,7 @@ class Hammurabi:
         #core game loop
         for year in range(1, 11):
             print(" Welcome to Year {year})")
+            self.printSummary(year, starved_last_year, immigrants_last_year, population, harvested_last_year, yield_per_acre, rats_eaten_last_year, acres_owned, land_value, bushels)
 
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
