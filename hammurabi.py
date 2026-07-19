@@ -8,11 +8,17 @@ class Hammurabi:
         self.playGame()
 
     def playGame(self):
-        # declare local variables here: grain, population, etc.
-        # statements go after the declarations
+        # INITIAL STATE 
+        population = 100
+        bushels = 2800
+        acres_owned = 1000
+        land_value = 19
+        
+        # to track statistics for summaries
+        starved_last_year = 0
+        immigrants_last_year = 5
+        harvested_last_year = 3000
+        yield_per_acre = 3
+        rats_eaten_last_year = 200
 
-    # other methods go here
-
-if __name__ == "__main__":
-    hammurabi = Hammurabi()
-    hammurabi.main()
+       
