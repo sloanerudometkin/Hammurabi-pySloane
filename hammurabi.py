@@ -27,6 +27,15 @@ class Hammurabi:
             print(" Welcome to Year {year})")
             self.printSummary(year, starved_last_year, immigrants_last_year, population, harvested_last_year, yield_per_acre, rats_eaten_last_year, acres_owned, land_value, bushels)
 
+            # call 1st input method
+            acres_to_buy = self.askHowManyAcresToBuy(land_value, bushels)
+            if acres_to_buy == -1:
+                print("\nYou have abandoned your kingdom! Shame on you! It will fall into chaos...")
+                return
+            #then update game state variables
+            bushels -= acres_to_buy * land_value
+            acres_owned += acres_to_buy
+
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
         print("\nO great Hammurabi!")
@@ -38,6 +47,24 @@ class Hammurabi:
         print(f"Rats destroyed {rats_eaten} bushels and left {bushels} bushels in storage.")
         print(f"The city owns {acres_owned} acres of land.")
         print(f"Right now, land is worth {land_value} bushels per acre.")
+
+    #INPUT METHODS
+    def askHowManyAcresToBuy(self, price, bushels):
+        while True:
+            try:
+                user_input = input("O Great Hammurabi, how many acres of land do you want to buy? (or type 'quit' to exit): ").strip().lower()
+                if user_input == 'quit':
+                    return -1
+                acres = int(input("0 Great Hammurabi, how many acres of land do you want to buy?"))
+                if acres < 0:
+                    print("Oh you jest! You can't buy a negative amount of land!")
+                elif acres * price > bushels:
+                    print(f"0 Great Hammurabi, you jest! We only have {bushels} bushels left!")
+                else:
+                    return acres
+            except ValueError:
+                print("Please enter a valid whole number.")
+
     
 
     # other methods go here
