@@ -22,6 +22,23 @@ class Hammurabi:
         yield_per_acre = 3
         rats_eaten_last_year = 200
 
+        #core game loop
+        for year in range(1, 11):
+            print(" Welcome to Year {year})")
+
+    #print summary
+    def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
+        print("\nO great Hammurabi!")
+        print(f"You are in year {year} of your ten year rule.")
+        print(f"Last year {starved} people starved to death.")
+        print(f"Last year {immigrants} people entered the kingdom.")
+        print(f"The population is now {population}.")
+        print(f"We harvested {harvest} bushels at {yield_per_acre} bushels per acre.")
+        print(f"Rats destroyed {rats_eaten} bushels and left {bushels} bushels in storage.")
+        print(f"The city owns {acres_owned} acres of land.")
+        print(f"Right now, land is worth {land_value} bushels per acre.")
+    
+
     # other methods go here
 
 if __name__ == "__main__":
