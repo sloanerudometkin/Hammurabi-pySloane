@@ -15,6 +15,12 @@ class Hammurabi:
         bushels = 2800
         acres_owned = 1000
         land_value = 19
+        #each year we have to print out summaries:
+        starved_last_year = 0
+        immigrants_last_year = 5
+        harvested_last_year = 3000
+        yield_per_acre = 3
+        rats_eaten_last_year = 200
 
     # other methods go here
 
