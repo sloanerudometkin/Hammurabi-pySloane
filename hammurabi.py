@@ -35,14 +35,21 @@ class Hammurabi:
             #then update game state variables
             bushels -= acres_to_buy * land_value
             acres_owned += acres_to_buy
-
+#ask how many acres to buy next
             if acres_to_buy == 0:
                 acres_to_sell = self.askHowManyAcresToSell(acres_owned)
                 if acres_to_sell == -1:
                     print("\nYou have abonded your kingdom! Shame on you! It will fall into chaos...")
-
+                    return
                 bushels += acres_to_sell * land_value
                 acres_owned -= acres_to_sell
+    #next, ask how much grain to feed: call that function
+            bushels_fed = self.askHowMuchGrainToFeedPeople(bushels)
+            if bushels_fed == -1:
+                print("\nYou have abonded your kingdom! Shame on you! It will fall into chaos...")
+                return
+            bushels -= bushels_fed
+
 
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
@@ -88,6 +95,23 @@ class Hammurabi:
                     return acres
             except ValueError:
                 print("please enter a valid whole number or 'quit'.")
+    
+    def askHowMuchGrainToFeedPeople(self, bushels):
+        while True:
+            try:
+                user_input = input(" O Great Hammurabi, how much grain are you going to feed your people? (or type 'quit' to exit): ").strip().lower()
+                if user_input == 'quit':
+                    return -1
+                
+                fed = int(user_input)
+                if fed < 0:
+                    print("Surely you silly jest! You cannot feed them a negative amouunt of grain!")
+                elif fed > bushels:
+                    print(f"Poor you... we only have {bushels} bushels in storage!") 
+                else:
+                    return fed
+            except ValueError:
+                print("Please enter a valid whole number or 'quit'.")
     
 
     # other methods go here
