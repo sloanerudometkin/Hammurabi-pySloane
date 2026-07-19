@@ -43,12 +43,22 @@ class Hammurabi:
                     return
                 bushels += acres_to_sell * land_value
                 acres_owned -= acres_to_sell
-    #next, ask how much grain to feed: call that function
+    #next, ask how much grain to feed: call that method
             bushels_fed = self.askHowMuchGrainToFeedPeople(bushels)
             if bushels_fed == -1:
                 print("\nYou have abonded your kingdom! Shame on you! It will fall into chaos...")
                 return
             bushels -= bushels_fed
+
+    #next call, the acres to plant method
+            acres_planted = self.askHowManyAcresToPlant(acres_owned, population, bushels)
+            if acres_planted == -1:
+                print("\nYou have abandoned your kingdom! Shame on you! It will fall into chaos...")
+                return
+            
+        #deduct the cost of seed
+
+            bushels -= acres_planted * 2
 
 
     #print summary
@@ -110,6 +120,27 @@ class Hammurabi:
                     print(f"Poor you... we only have {bushels} bushels in storage!") 
                 else:
                     return fed
+            except ValueError:
+                print("Please enter a valid whole number or 'quit'.")
+
+    def askHowManyAcresToPlant(self, acresOwned, population, bushels):
+        while True:
+            try:
+                user_input = input("O Great Hammurabi, how many acres do you want to plant with grain? (or type 'quit' to exit): ").strip().lower()
+                if user_input == 'quit':
+                    return -1
+                
+                planted = int(user_input)
+                if planted < 0:
+                    print("Oh you jest! You can't plant a negative amount of land!")
+                elif planted > acresOwned:
+                    print(f"O Not-so-great Hammurabi... we only own {acresOwned} acres!")
+                elif planted > population * 10:
+                    print(f"Oh silly Hammurabi... our population of {population} can only farm {population * 10} acres!")
+                elif planted * 2 > bushels:
+                    print("Oh silly Hammurabi, we only have {bushels} bushels of seed left!")
+                else:
+                    return planted
             except ValueError:
                 print("Please enter a valid whole number or 'quit'.")
     
