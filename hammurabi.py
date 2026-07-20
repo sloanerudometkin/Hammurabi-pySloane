@@ -79,7 +79,8 @@ class Hammurabi:
                 #pass population in before u subtract starved_last_year, or population + starved_last_year
                 print(f"\nO Great Hammurabi! You have starved {starved_last_year} people!")
                 print("More than 45% of you population starved. The people have you revolted and thrown you out of office!")
-
+                return
+            
         #4 immigrants
 
         #if anyone starved, there are no immigrants, so first check for uprising, then call immmigrants and add immigrants_last_year to population
@@ -106,15 +107,7 @@ class Hammurabi:
         bushels -= rats_eaten_last_year
 
         #then the new cost of land
-        land_value = self.newCostOfLand
-
-
-
-
-
-
-
-
+        land_value = self.newCostOfLand()
 
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
