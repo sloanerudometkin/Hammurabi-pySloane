@@ -197,6 +197,11 @@ class Hammurabi:
         #calculate new immigrants coming to city if no one starved
         return int((20 * acresOwned + grainInStorage) / (100 * population)) + 1
     
+    def harvest(self, acres, bushelsUsedAsSeed=0):
+        #choose the random yield between 1 and 6 bushels/acre and return total harvest
+        #generate random yield/acre between 1 and 6
+        yield_per_acre 
+    
 
     # other methods go here
 
