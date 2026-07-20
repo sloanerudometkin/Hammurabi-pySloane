@@ -173,14 +173,14 @@ class Hammurabi:
             return population // 2
         return 0
     
-    def starvationDeaths(self, population, bushelsFedToPeople)
+    def starvationDeaths(self, population, bushelsFedToPeople):
         #calculate how many people starve based on grain fed and each person needs 20 bushels to survive
         people_fed = bushelsFedToPeople // 20
         if people_fed < population:
             return population - people_fed
         return 0
     
-    def uprising(self, population, howManyPeopleStarved)
+    def uprising(self, population, howManyPeopleStarved):
         #return true if more than 45% of the population has starved
         return (howManyPeopleStarved / population) > 0.45
     
