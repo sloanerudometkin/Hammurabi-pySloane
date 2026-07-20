@@ -22,6 +22,9 @@ class Hammurabi:
         yield_per_acre = 3
         rats_eaten_last_year = 200
 
+        #initial summary
+        self.printSummary(1, starved_last_year, immigrants_last_year, population, harvested_last_year, yield_per_acre, rats_eaten_last_year, acres_owned, land_value, bushels)
+      
         #core game loop
         for year in range(1, 11):
             print(" Welcome to Year {year})")
@@ -108,6 +111,8 @@ class Hammurabi:
 
         #then the new cost of land
         land_value = self.newCostOfLand()
+
+        self.printSummary(year, starved_last_year, immigrants_last_year, population, harvested_last_year, yield_per_acre, rats_eaten_last_year, acres_owned, land_value, bushels)
 
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
