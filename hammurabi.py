@@ -81,12 +81,35 @@ class Hammurabi:
                 print("More than 45% of you population starved. The people have you revolted and thrown you out of office!")
 
         #4 immigrants
+
         #if anyone starved, there are no immigrants, so first check for uprising, then call immmigrants and add immigrants_last_year to population
             if starved_last_year > 0:
                 immigrants_last_year = 0
             else:
                 immigrants_last_year = self.immigrants(population, acres_owned, bushels)
                 population += immigrants_last_year
+
+        #5 harvest
+
+        #calculate seed used (2 bushels/planted acre)
+        bushels_used_as_seed = acres_planted * 2
+        #calculate harvest
+        harvested_last_year = self.harvest(acres_planted, bushels_used_as_seed)
+        # find yield/acre for printSummary (cant do if 0 acres were planted)
+        yield_per_acre = harvested_last_year // acres_planted if acres_planted > 0 else 0
+        #add harvested stuff to storage
+        bushels += harvested_last_year
+
+        #6 grain eaten by rats
+
+        rats_eaten_last_year = self.grainEatenByRats(bushels)
+        bushels -= rats_eaten_last_year
+
+        #then the new cost of land
+        land_value = self.newCostOfLand
+
+
+
 
 
 
@@ -200,7 +223,24 @@ class Hammurabi:
     def harvest(self, acres, bushelsUsedAsSeed=0):
         #choose the random yield between 1 and 6 bushels/acre and return total harvest
         #generate random yield/acre between 1 and 6
-        yield_per_acre 
+        yield_per_acre = self.rand.randint(1, 6)
+        #multiply planted acres by yield per acre
+        total_harvest = acres * yield_per_acre
+        #return total bushes harvested
+        return total_harvest
+
+    def grainEatenByRats(self, bushels):
+        #40% chance of infestation
+        if self.rand.randint(1, 100) <= 40:
+            # pick random percentage between 10% and 30%
+            percent_eaten = self.rand.randint(10, 30)
+            #amount of grain eaten
+            return (bushels * percent_eaten) // 100
+        return 0
+    
+    def newCostOfLand(self):
+        #return random int between 17 and 23 
+        return self.rand.randint(17, 23)
     
 
     # other methods go here
