@@ -73,6 +73,14 @@ class Hammurabi:
             starved_last_year = self.starvationDeaths(population, bushels_fed)
             population -= starved_last_year
 
+        #3. uprising
+
+            if self.uprising(population + starved_last_year, starved_last_year):
+                #pass population in before u subtract starved_last_year, or population + starved_last_year
+                print(f"\nO Great Hammurabi! You have starved {starved_last_year} people!")
+                print("More than 45% of you population starved. The people have you revolted and thrown you out of office!")
+
+
 
 
 
@@ -171,6 +179,10 @@ class Hammurabi:
         if people_fed < population:
             return population - people_fed
         return 0
+    
+    def uprising(self, population, howManyPeopleStarved)
+        #return true if more than 45% of the population has starved
+        return (howManyPeopleStarved / population) > 0.45
     
 
     # other methods go here
