@@ -133,7 +133,9 @@ class Hammurabi:
                 user_input = input("O Great Hammurabi, how many acres of land do you want to buy? (or type 'quit' to exit): ").strip().lower()
                 if user_input == 'quit':
                     return -1
-                acres = int(input("0 Great Hammurabi, how many acres of land do you want to buy?"))
+                
+                acres = int(user_input)
+                
                 if acres < 0:
                     print("Oh you jest! You can't buy a negative amount of land!")
                 elif acres * price > bushels:
