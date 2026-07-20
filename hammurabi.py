@@ -35,7 +35,7 @@ class Hammurabi:
             #then update game state variables
             bushels -= acres_to_buy * land_value
             acres_owned += acres_to_buy
-#ask how many acres to buy next
+#ask how many acres to sell next
             if acres_to_buy == 0:
                 acres_to_sell = self.askHowManyAcresToSell(acres_owned)
                 if acres_to_sell == -1:
@@ -79,6 +79,15 @@ class Hammurabi:
                 #pass population in before u subtract starved_last_year, or population + starved_last_year
                 print(f"\nO Great Hammurabi! You have starved {starved_last_year} people!")
                 print("More than 45% of you population starved. The people have you revolted and thrown you out of office!")
+
+        #4 immigrants
+        #if anyone starved, there are no immigrants, so first check for uprising, then call immmigrants and add immigrants_last_year to population
+            if starved_last_year > 0:
+                immigrants_last_year = 0
+            else:
+                immigrants_last_year = self.immigrants(population, acres_owned, bushels)
+                population += immigrants_last_year
+
 
 
 
@@ -183,6 +192,10 @@ class Hammurabi:
     def uprising(self, population, howManyPeopleStarved):
         #return true if more than 45% of the population has starved
         return (howManyPeopleStarved / population) > 0.45
+    
+    def immigrants(self, population, acresOwned, grainInStorage):
+        #calculate new immigrants coming to city if no one starved
+        return int((20 * acresOwned + grainInStorage) / (100 * population)) + 1
     
 
     # other methods go here
