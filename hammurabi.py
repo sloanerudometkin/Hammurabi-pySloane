@@ -60,6 +60,21 @@ class Hammurabi:
 
             bushels -= acres_planted * 2
 
+        #determination (event) methods called in the core game loop
+        #1 check for plague
+            plague_deaths = self.plagueDeaths(population)
+            population -= plague_deaths
+
+            if plague_deaths > 0:
+                print(f"\nA terrible plague has struck! {plague_deaths} people have died!")
+
+        #2. starvation
+
+            starved_last_year = self.starvationDeaths(population, bushels_fed)
+            population -= starved_last_year
+
+
+
 
     #print summary
     def printSummary(self, year, starved, immigrants, population, harvest, yield_per_acre, rats_eaten, acres_owned, land_value, bushels):
@@ -143,6 +158,19 @@ class Hammurabi:
                     return planted
             except ValueError:
                 print("Please enter a valid whole number or 'quit'.")
+
+    #DETERMINATION METHODS
+    def plagueDeaths(self, population):
+        if self.rand.randint(1, 100) <= 15: #self.rand initialized in __init__ using random
+            return population // 2
+        return 0
+    
+    def starvationDeaths(self, population, bushelsFedToPeople)
+        #calculate how many people starve based on grain fed and each person needs 20 bushels to survive
+        people_fed = bushelsFedToPeople // 20
+        if people_fed < population:
+            return population - people_fed
+        return 0
     
 
     # other methods go here
