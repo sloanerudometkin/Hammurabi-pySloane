@@ -1,4 +1,4 @@
-
+from hammurabi import Hammurabi
 class HammurabiTest:
     def __init__(self):
         self.ham = Hammurabi()
